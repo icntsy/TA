@@ -27,10 +27,15 @@
                             <table class="mb-0 table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Kode Diagnosa</th>
+                                    <th>Category</th>
+                                    <th>Subcategory</th>
+                                    <th>English Name</th>
+                                    <th>Indonesian Name</th>
+                                    <th>Action</th>
+                                    {{-- <th>Kode Diagnosa</th>
                                     <th>Kode ICD</th>
                                     <th>Diagnosa</th>
-                                    <th>Action</th>
+                                    <th>Action</th> --}}
                                 </tr>
                                 </thead>
 
