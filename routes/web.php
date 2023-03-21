@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportObatController;
 use App\Http\Controllers\SelectController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Documentation\AddParamAndRequest;
@@ -46,11 +47,13 @@ $list_menu = [
 Route::middleware(['auth:web'])->group(function () use ($list_menu) {
     Route::get('/show/{immunization}', \App\Http\Livewire\Immunization\Show::class)->name('immunization.show');
     Route::get('/show/{pregnantmom}', \App\Http\Livewire\Pregnantmom\Show::class)->name('pregnantmom.show');
-    Route::get('/dokumentasi_api', [\App\Http\Controllers\DokumentasiController::class,'index'])->name('dokumentasi_api');
+    Route::get('/dokumentasi_api', [\App\Http\Controllers\DokumentasiController::class, 'index'])->name('dokumentasi_api');
 
     Route::get('/', function () {
         return view('welcome');
     })->name('home');
+
+    Route::post("/obat/import", [ImportObatController::class, "import"]);
     // Route::get('antrian/process/{pendaftaran}', \App\Http\Livewire\Queue\Process::class)->name('queue.process');
     Route::get('antrian/process/{queue}', \App\Http\Livewire\Queue\Process::class)->name('queue.process');
     Route::get('dokumentasi/add-params-and-request/{doc}', AddParamAndRequest::class)->name('doc.add-param');
@@ -86,17 +89,17 @@ Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
 // Route generator
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')
-   ->name('io_generator_builder');
+    ->name('io_generator_builder');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')
-   ->name('io_field_template');
+    ->name('io_field_template');
 Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')
-   ->name('io_relation_field_template');
+    ->name('io_relation_field_template');
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')
-   ->name('io_generator_builder_generate');
+    ->name('io_generator_builder_generate');
 Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')
-   ->name('io_generator_builder_rollback');
-Route::post('generator_builder/generate-from-file','\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile')
-   ->name('io_generator_builder_generate_from_file');
+    ->name('io_generator_builder_rollback');
+Route::post('generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile')
+    ->name('io_generator_builder_generate_from_file');
 
 
 

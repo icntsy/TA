@@ -179,7 +179,8 @@ return [
         L5Swagger\L5SwaggerServiceProvider::class,
 
         //infyom generator
-        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class, 
+        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -233,7 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

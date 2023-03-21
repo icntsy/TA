@@ -44,7 +44,8 @@
                                     <th>Nama Obat</th>
                                     {{-- <th>Keterangan</th> --}}
                                     <th style="cursor: pointer" wire:click="sort('harga')">
-                                        <i class='fa @if ($sortType == 'desc' and $sortColumn == 'harga') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'harga') fa-sort-amount-up ml-2 @endif'></i>
+                                        <i
+                                            class='fa @if ($sortType == 'desc' and $sortColumn == 'harga') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'harga') fa-sort-amount-up ml-2 @endif'></i>
                                         Harga Obat
                                     </th>
                                     <th style="cursor: pointer" wire:click="sort('stok')"><i
@@ -56,7 +57,7 @@
                             </thead>
                             <tbody>
                                 @forelse($drugs as $drug)
-                                    <livewire:drug.single :drug="$drug" :key="time().$drug->id" />
+                                    <livewire:drug.single :drug="$drug" :key="time() . $drug->id" />
                                 @empty
                                     @include('layouts.empty', ['colspan' => 7])
                                 @endforelse

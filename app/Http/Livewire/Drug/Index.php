@@ -20,20 +20,25 @@ class Index extends Component
     public $sortType;
     public $sortColumn;
 
-    public function articleDeleted(){
+    public function articleDeleted()
+    {
     }
 
-    public function importData(){
-        $this->dispatchBrowserEvent('show-model', ['id'=> 'modal']);
+    public function importData()
+    {
+        $this->dispatchBrowserEvent('show-model', ['id' => 'modal']);
     }
 
-    public function downloadData(){
+    public function downloadData()
+    {
         return Excel::download(new DrugExport, 'drug-data.xlsx');
     }
-    public function drugCreated(){
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Created Message', ['name' => __('Article') ])]);
+    public function drugCreated()
+    {
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Created Message', ['name' => __('Article')])]);
     }
-    public function drugImported(){
+    public function drugImported()
+    {
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => 'Data Berhasil Di Import']);
     }
 
@@ -47,14 +52,14 @@ class Index extends Component
     public function render()
     {
         $drugs = Drug::query();
-        $drugs->where('nama', 'like', '%'.$this->search.'%');
-        if($this->sortColumn){
+        $drugs->where('nama', 'like', '%' . $this->search . '%');
+        if ($this->sortColumn) {
             $drugs->orderBy($this->sortColumn, $this->sortType);
-        }else{
+        } else {
             $drugs->latest('id');
         }
         $drugs = $drugs->paginate(5);
 
-        return view('livewire.drug.index',['drugs' => $drugs] );
+        return view('livewire.drug.index', ['drugs' => $drugs]);
     }
 }
