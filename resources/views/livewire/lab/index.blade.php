@@ -3,19 +3,30 @@
 @section('page_title_icon')
     <i class="metismenu-icon fa fa-file-medical-alt"></i>
 @endsection
+
+@section('modal')
+    <livewire:lab.import />
+@endsection
+
 <div class="row">
     <div class="col-12">
         <div class="mb-3 card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
-                        <a href="{{route('lab.create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="{{ route('lab.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
+                            Data</a>
+                        <button class="btn btn-secondary" wire:click="importData"><i class="fa fa-file-import"></i>
+                            Import
+                            Excel</button>
+                        <button class="btn btn-secondary" wire:click="downloadData"><i class="fa fa-file-import"></i>
+                            Export
+                            Excel</button>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="input-group">
                             <input type="text" class="form-control form-control" wire:model.lazy="search"
-                                   placeholder="{{ __('Cari Lab') }}"
-                                   value="{{ request('search') }}">
+                                placeholder="{{ __('Cari Lab') }}" value="{{ request('search') }}">
                             <div class="input-group-append">
                                 <button class="btn btn-default">
                                     <a wire:target="search" wire:loading.remove><i class="fa fa-search"></i></a>
@@ -29,17 +40,17 @@
                     <div class="col-md-12">
                         <table class="mb-0 table table-striped table-bordered">
                             <thead>
-                            <tr>
-                                <th>Nama Lab</th>
-                                <th>Harga</th>
-                                <th>Satuan</th>
-                                <th>Action</th>
-                            </tr>
+                                <tr>
+                                    <th>Nama Lab</th>
+                                    <th>Harga</th>
+                                    <th>Satuan</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach($labs as $lab)
-                                <livewire:lab.single :lab="$lab" :key="time().$lab->id"/>
-                            @endforeach
+                                @foreach ($labs as $lab)
+                                    <livewire:lab.single :lab="$lab" :key="time() . $lab->id" />
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
