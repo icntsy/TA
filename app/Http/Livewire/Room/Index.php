@@ -18,6 +18,10 @@ class Index extends Component
     public $sortType;
     public $sortColumn;
 
+    protected $listeners  = [
+        'roomDeleted'
+    ];
+
     public function importData()
     {
         $this->dispatchBrowserEvent('show-model', ['id' => 'modal']);
@@ -26,6 +30,14 @@ class Index extends Component
     public function downloadData()
     {
         return Excel::download(new RoomExport, 'Data-Ruangan.xlsx');
+    }
+
+    public function roomDeleted()
+    {
+        $this->dispatchBrowserEvent('show-message', [
+            'type' => 'success',
+            'message' => 'Data Berhasil di Hapus'
+        ]);
     }
 
     public function sort($column)

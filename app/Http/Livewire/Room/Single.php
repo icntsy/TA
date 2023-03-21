@@ -9,7 +9,8 @@ class Single extends Component
 {
     public $room;
 
-    public function mount(Room $room){
+    public function mount(Room $room)
+    {
         $this->room = $room;
     }
     /**
@@ -17,8 +18,16 @@ class Single extends Component
      *
      * @return \Illuminate\View\View|string
      */
+
+
     public function render()
     {
-        return view('livewire.room.single');
+        $room = $this->room;
+        return view('livewire.room.single', compact("room"));
+    }
+    public function delete()
+    {
+        $this->room->delete();
+        $this->emit('roomDeleted');
     }
 }
