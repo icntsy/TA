@@ -273,19 +273,28 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Kode Diagnosa</th>
+                                            {{-- <th>Kode Diagnosa</th>
                                             <th>Kode ICD</th>
                                             <th>Diagnosa</th>
-                                            <th>Keterangan</th>
+                                            <th>Keterangan</th> --}}
+                                            <th>Category</th>
+                                            <th>Subcategory</th>
+                                            <th>English Name</th>
+                                            <th>Indonesian Name</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($listDiagnosa as $index => $diagnosa)
                                                 <tr>
-                                                    <td>{{$diagnosa["diagnosa"]["code"]}}</td>
-                                                    <td>{{$diagnosa["diagnosa"]["icc_code"]}}</td>
-                                                    <td>{{$diagnosa["diagnosa"]["diagnosis"]}}</td>
+                                                    <td>{{$diagnosa["diagnosa"]["category"]}}</td>
+                                                    <td>{{$diagnosa["diagnosa"]["subcategory"]}}</td>
+                                                    <td>{{$diagnosa["diagnosa"]["english_name"]}}</td>
+                                                    <td>{{$diagnosa["diagnosa"]["indonesian_name"]}}</td>
+                                                    {{-- <td>{{ $diagnosis->category }}</td>
+                                                    <td>{{ $diagnosis->subcategory }}</td>
+                                                    <td>{{ $diagnosis->english_name }}</td>
+                                                    <td>{{ $diagnosis->indonesian_name }}</td> --}}
                                                     <td>
                                                         <input type="text" class="form-control" wire:model="listDiagnosa.{{$index}}.description"/>
                                                     </td>
