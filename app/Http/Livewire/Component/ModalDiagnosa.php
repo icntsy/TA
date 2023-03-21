@@ -20,11 +20,11 @@ class ModalDiagnosa extends Component
     public function render()
     {
         $diagnoses = Diagnosis::query();
-        $diagnoses->where('diagnosis', 'like', '%'.$this->search.'%')
-            ->orWhere('code', 'like', '%'.$this->search.'%');
-        if($this->sortColumn){
+        $diagnoses->where('english_name', 'like', '%' . $this->search . '%')
+            ->orWhere('indonesian_name', 'like', '%' . $this->search . '%');
+        if ($this->sortColumn) {
             $diagnoses->orderBy($this->sortColumn, $this->sortType);
-        }else{
+        } else {
             $diagnoses->latest('id');
         }
         $diagnoses = $diagnoses->paginate(5);
