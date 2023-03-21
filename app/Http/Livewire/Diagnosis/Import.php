@@ -12,16 +12,6 @@ class Import extends Component
     use WithFileUploads;
     public $file;
 
-    public function saveData(){
-        $this->validate();
-
-        Excel::import(new DiagnosisImport, $this->file);
-        $this->reset();
-        $this->emit('diagnosisImported');
-    }
-    protected $rules = [
-        'file' => 'file|mimes:xlsx,xls'
-    ];
     public function render()
     {
         return view('livewire.diagnosis.import');

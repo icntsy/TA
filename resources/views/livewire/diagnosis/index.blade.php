@@ -42,22 +42,22 @@
                         <table class="mb-0 table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Kode Diagnosa</th>
+                                    <th>Category</th>
                                     <th style="cursor: pointer" wire:click="sort('type')">
-                                        <i class='fa @if ($sortType == ' desc' and
-                                            $sortColumn=='type' ) fa-sort-amount-down
+                                        <i
+                                            class='fa @if ($sortType == ' desc' and $sortColumn == 'type') fa-sort-amount-down
                                         ml-2 @elseif($sortType == 'asc' and $sortColumn == 'type') fa-sort-amount-up
-                                            ml-2
-                                            @endif'></i>
-                                        Jenis Kode
+                                            ml-2 @endif'></i>
+                                        Subcategory
                                     </th>
-                                    <th>Diagnosa</th>
+                                    <th>English Name</th>
+                                    <th>Indonesian Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($diagnoses as $diagnosis)
-                                    <livewire:diagnosis.single :diagnosis="$diagnosis" :key="time().$diagnosis->id" />
+                                    <livewire:diagnosis.single :diagnosis="$diagnosis" :key="time() . $diagnosis->id" />
                                 @empty
                                     @include('layouts.empty', ['colspan' => 7])
                                 @endforelse

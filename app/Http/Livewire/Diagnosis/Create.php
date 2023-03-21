@@ -7,14 +7,16 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $diagnosis;
-    public $code;
-    public $icc_code;
+    public $category;
+    public $subcategory;
+    public $english_name;
+    public $indonesian_name;
 
     protected $rules = [
-        'code' => 'required',
-        'icc_code' => 'required',
-        'diagnosis' => 'required'
+        'category' => 'required',
+        'subcategory' => "required",
+        "english_name" => "required",
+        "indonesian_name" => "required"
     ];
 
     public function create()
@@ -22,9 +24,10 @@ class Create extends Component
         $this->validate();
 
         Diagnosis::create([
-            'code' => $this->code,
-            'icc_code' => $this->icc_code,
-            'diagnosis' => $this->diagnosis,
+            'category' => $this->category,
+            'subcategory' => $this->subcategory,
+            'english_name' => $this->english_name,
+            'indonesian_name' => $this->indonesian_name
         ]);
 
         $this->reset();
