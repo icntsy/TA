@@ -30,15 +30,9 @@ class DrugExport implements
     {
         return [
             $row->nama,
-            // $row->takaran,
-            // $row->keterangan,
-            // $row->satuan,
             $row->stok,
-            // $row->harga,
             $row->min_stok,
             $row->harga,
-            // $row->expired_date,
-            // $row->created_at
         ];
     }
 
@@ -46,15 +40,9 @@ class DrugExport implements
     {
         return [
             'Nama',
-            // 'Takaran',
-            // 'Keterangan',
-            // 'Satuan',
             'Stok',
-            // 'Harga',
             'Min Stok',
             'Harga'
-            // 'Expire Date',
-            // 'Created At'
         ];
     }
 

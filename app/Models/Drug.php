@@ -13,13 +13,8 @@ class Drug extends Model
 
     protected $fillable = [
         'nama',
-        // 'takaran',
-        // 'keterangan',
-        // 'satuan',
         'stok',
-        // 'harga',
         'min_stok',
         'harga'
-        // 'expire_date'
     ];
 }
