@@ -8,15 +8,25 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/diagnosis/import') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/lab/import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="file">Pilih File</label>
-                        <input type="file" class="form-control-file" name="file" id="file">
+                        <input type="file" id="file" name="file" class="form-control-file">
+                        {{-- <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            wire:model="file" id="file"
+                            class="form-control-file @error('file')
+                            is-invalid
+    @enderror"> --}}
+                        @error('file')
+                            <div class='invalid-feedback'>{{ $message }}</div>
+                        @enderror
+
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" wire:click="" class="btn btn-primary">Download Sample</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     {{-- <button type="button" wire:click="saveData" class="btn btn-primary">Save changes</button> --}}
                     <button type="submit" class="btn btn-primary">

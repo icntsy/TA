@@ -10,8 +10,6 @@ class Diagnosis extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code',
-         'icc_code',
-        'diagnosis',
+        'category', 'subcategory', 'english_name', 'indonesian_name'
     ];
 }

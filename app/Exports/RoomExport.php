@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\Diagnosis;
 use App\Models\Room;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -11,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class DiagnosisExport implements
+class RoomExport implements
     FromCollection,
     WithMapping,
     WithHeadings,
@@ -23,26 +22,24 @@ class DiagnosisExport implements
      */
     public function collection()
     {
-        return Diagnosis::all();
+        return Room::all();
     }
 
     public function map($row): array
     {
         return [
-            $row->category,
-            $row->subcategory,
-            $row->english_name,
-            $row->indonesian_name
+            $row->name,
+            $row->price,
+            $row->status
         ];
     }
 
     public function headings(): array
     {
         return [
-            'Category',
-            'SubCategory',
-            'English Name',
-            'Indonesian Name'
+            'Nama Ruangan',
+            'Harga Ruangan',
+            'Status'
         ];
     }
 

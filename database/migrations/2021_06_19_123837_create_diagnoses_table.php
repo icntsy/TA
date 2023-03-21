@@ -15,9 +15,10 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('icc_code');
-            $table->string('diagnosis');
+            $table->string('category');
+            $table->string('subcategory');
+            $table->string('english_name');
+            $table->string("indonesian_name");
             $table->timestamps();
         });
     }

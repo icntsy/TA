@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Lab;
 
+use App\Exports\LabExport;
 use App\Models\Lab;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -20,7 +22,18 @@ class Index extends Component
         'labDeleted'
     ];
 
-    public function labDeleted(){
+    public function importData()
+    {
+        $this->dispatchBrowserEvent('show-model', ['id' => 'modal']);
+    }
+
+    public function downloadData()
+    {
+        return Excel::download(new LabExport, 'Data-Lab.xlsx');
+    }
+
+    public function labDeleted()
+    {
         $this->dispatchBrowserEvent('show-message', [
             'type' => 'success',
             'message' => 'Data Berhasil di Hapus'
@@ -35,10 +48,10 @@ class Index extends Component
 
     public function render()
     {
-        $labs = Lab::query()->where('nama', 'like', '%'. $this->search.'%');
-        if($this->sortColumn){
+        $labs = Lab::query()->where('nama', 'like', '%' . $this->search . '%');
+        if ($this->sortColumn) {
             $labs->orderBy($this->sortColumn, $this->sortType);
-        }else{
+        } else {
             $labs->latest('id');
         }
         $labs = $labs->paginate(10);

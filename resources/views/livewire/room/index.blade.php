@@ -3,6 +3,11 @@
 @section('page_title_icon')
     <i class="metismenu-icon fa fa-door-open"></i>
 @endsection
+
+@section('modal')
+    <livewire:room.import />
+@endsection
+
 <div class="row">
     <div class="col-12">
         <div class="mb-3 card">
@@ -11,6 +16,12 @@
                     <div class="col-md-6 col-sm-12">
                         <a href="{{ route('room.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
                             Data</a>
+                        <button class="btn btn-secondary" wire:click="importData"><i class="fa fa-file-import"></i>
+                            Import
+                            Excel</button>
+                        <button class="btn btn-secondary" wire:click="downloadData"><i class="fa fa-file-import"></i>
+                            Export
+                            Excel</button>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="input-group">
@@ -38,7 +49,7 @@
                             </thead>
                             <tbody>
                                 @forelse($rooms as $room)
-                                    <livewire:room.single :room="$room" :key="time().$room->id" />
+                                    <livewire:room.single :room="$room" :key="time() . $room->id" />
                                 @empty
                                     @include('layouts.empty', ['colspan' => 4])
                                 @endforelse

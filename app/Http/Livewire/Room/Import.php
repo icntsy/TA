@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Diagnosis;
+namespace App\Http\Livewire\Room;
 
-use App\Imports\DiagnosisImport;
+use App\Imports\DrugImport;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,6 +14,6 @@ class Import extends Component
 
     public function render()
     {
-        return view('livewire.diagnosis.import');
+        return view('livewire.room.import');
     }
 }
