@@ -54,7 +54,7 @@ class Index extends Component
         } else {
             $labs->latest('id');
         }
-        $labs = $labs->paginate(10);
+        $labs = $labs->paginate(5);
         return view('livewire.lab.index', compact('labs'));
     }
 }
