@@ -20,7 +20,7 @@ class Process extends Component
     public $weight;
     public $blood_pressure;
     public $color_blind;
-    public $blood; 
+    public $blood;
     public $respiration;
     public $pulse;
     public $temperature;
@@ -36,9 +36,10 @@ class Process extends Component
     ];
 
 
-    public function rules(){
+    public function rules()
+    {
         return [
-            'height'=> 'required',
+            'height' => 'required',
             'weight' => 'required',
             'blood_pressure' => 'required',
             'color_blind' => 'required',
@@ -52,7 +53,8 @@ class Process extends Component
         ];
     }
 
-    public  function mount(Queue $queue){
+    public  function mount(Queue $queue)
+    {
         $this->queue = $queue;
         $this->allergy = $this->queue->patient->allergy;
         $this->main_complaint = $this->queue->main_complaint;
@@ -62,38 +64,45 @@ class Process extends Component
         return view('livewire.queue.process');
     }
 
-    public function addDiagnosa(){
+    public function addDiagnosa()
+    {
         $this->dispatchBrowserEvent('show-model', [
-            'id' =>'diagnosa'
+            'id' => 'diagnosa'
         ]);
     }
-    public function addLab(){
+    public function addLab()
+    {
         $this->dispatchBrowserEvent('show-model', [
-            'id' =>'lab'
+            'id' => 'lab'
         ]);
     }
-    public function addDrug(){
+    public function addDrug()
+    {
         $this->dispatchBrowserEvent('show-model', [
-            'id' =>'drug'
+            'id' => 'drug'
         ]);
     }
-    public function deleteLab($id){
+    public function deleteLab($id)
+    {
         unset($this->listLab[$id]);
         $this->listLab = array_values($this->listLab);
     }
 
-    public function deleteDiagnosa($id){
+    public function deleteDiagnosa($id)
+    {
         unset($this->listDiagnosa[$id]);
         $this->listDiagnosa = array_values($this->listDiagnosa);
     }
-    public function deleteDrug($id){
+    public function deleteDrug($id)
+    {
         unset($this->listDrug[$id]);
         $this->listDrug = array_values($this->listDrug);
     }
 
 
-    public function diagnosaAdded(Diagnosis $diagnosis){
-        if(!in_array($diagnosis, $this->listDiagnosa)){
+    public function diagnosaAdded(Diagnosis $diagnosis)
+    {
+        if (!in_array($diagnosis, $this->listDiagnosa)) {
             $this->listDiagnosa[] = [
                 "diagnosa" => $diagnosis,
                 "description" => "",
@@ -101,22 +110,24 @@ class Process extends Component
         }
     }
 
-    public function labAdded(Lab $lab){
-        if(!in_array($lab, $this->listLab)){
-            $this->listLab[]=[
+    public function labAdded(Lab $lab)
+    {
+        if (!in_array($lab, $this->listLab)) {
+            $this->listLab[] = [
                 "lab" => $lab,
                 "result" => "",
-            ] ;
+            ];
         }
     }
 
-    public function drugAdded(\App\Models\Drug $drug){
-        if(!in_array($drug, $this->listDrug)){
-            $this->listDrug[]=[
+    public function drugAdded(\App\Models\Drug $drug)
+    {
+        if (!in_array($drug, $this->listDrug)) {
+            $this->listDrug[] = [
                 "drug" => $drug,
                 "quantity" => 1,
                 "instruction" => ""
-            ] ;
+            ];
         }
     }
 
@@ -126,12 +137,13 @@ class Process extends Component
         # code...
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate();
         try {
             $medical_record = MedicalRecord::create([
                 'anamnesis' => $this->anamnesis,
-                'physical_test' =>json_encode(
+                'physical_test' => json_encode(
                     [
                         "height" => $this->height,
                         "weight" => $this->weight,
@@ -149,19 +161,19 @@ class Process extends Component
                 'doctor_id' => $this->queue->doctor->id,
                 'patient_id' => $this->queue->patient->id,
             ]);
-            foreach ($this->listDiagnosa as $diagnosa){
-                $medical_record->diagnoses()->attach($diagnosa["diagnosa"]["id"],[
+            foreach ($this->listDiagnosa as $diagnosa) {
+                $medical_record->diagnoses()->attach($diagnosa["diagnosa"]["id"], [
                     "description" => $diagnosa["description"]
                 ]);
             }
-            foreach ($this->listLab as $lab){
-                $medical_record->labs()->attach($lab["lab"]["id"],[
+            foreach ($this->listLab as $lab) {
+                $medical_record->labs()->attach($lab["lab"]["id"], [
                     "result" => $lab["result"]
                 ]);
             }
 
-            foreach ($this->listDrug as $drug){
-                $medical_record->drugs()->attach($drug["drug"]["id"],[
+            foreach ($this->listDrug as $drug) {
+                $medical_record->drugs()->attach($drug["drug"]["id"], [
                     "quantity" => $drug["quantity"],
                     "instruction" => $drug["instruction"]
                 ]);
@@ -171,9 +183,8 @@ class Process extends Component
                 'medical_record_id' => $medical_record->id,
             ]);
             $this->redirectRoute('queue.index');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             dd($e);
         }
-
     }
 }
