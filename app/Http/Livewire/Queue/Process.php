@@ -117,6 +117,7 @@ class Process extends Component
                 "lab" => $lab,
                 "result" => "",
             ];
+            $lab = $lab->paginate(5);
         }
     }
 

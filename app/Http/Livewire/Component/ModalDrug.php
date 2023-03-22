@@ -16,8 +16,8 @@ class ModalDrug extends Component
 
     public function render()
     {
-        $drugs = Drug::query()->where('nama', 'like', '%'. $this->search.'%');
-        $drugs = $drugs->paginate(10);
+        $drugs = Drug::query()->where('nama', 'like', '%' . $this->search . '%');
+        $drugs = $drugs->paginate(5);
         return view('livewire.component.modal-drug', compact('drugs'));
     }
 }

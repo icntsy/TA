@@ -16,8 +16,8 @@ class ModalLab extends Component
 
     public function render()
     {
-        $labs = Lab::query()->where('nama', 'like', '%'. $this->search.'%');
-        $labs = $labs->paginate(10);
+        $labs = Lab::query()->where('nama', 'like', '%' . $this->search . '%');
+        $labs = $labs->paginate(5);
         return view('livewire.component.modal-lab', compact('labs'));
     }
 }

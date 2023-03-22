@@ -1,6 +1,5 @@
 <div wire:ignore.self class="modal fade bd-example-modal-lg" id="drug" tabindex="-1" role="dialog"
-     aria-labelledby="myLargeModalLabel"
-     aria-hidden="true">
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -10,8 +9,7 @@
                     <div class="btn-actions-pane-right text-capitalize">
                         <div class="input-group">
                             <input type="text" class="form-control form-control" wire:model.lazy="search"
-                                   placeholder="{{ __('Cari Obat') }}"
-                                   value="{{ request('search') }}">
+                                placeholder="{{ __('Cari Obat') }}" value="{{ request('search') }}">
                             <div class="input-group-append">
                                 <button class="btn btn-primary">
                                     <a wire:target="search" wire:loading.remove><i class="fa fa-search"></i></a>
@@ -26,18 +24,17 @@
                         <div class="col-md-12">
                             <table class="mb-0 table table-striped table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>Nama Obat</th>
-                                    <th>Satuan Dosis</th>
-                                    {{-- <th>Harga</th> --}}
-                                    {{-- <th>Action</th> --}}
-                                </tr>
+                                    <tr>
+                                        <th>Nama Obat</th>
+                                        <th>Harga</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
 
                                 <tbody>
-                                @foreach($drugs as $drug)
-                                    <livewire:component.drug-single :drug="$drug" :key="time().$drug->id"/>
-                                @endforeach
+                                    @foreach ($drugs as $drug)
+                                        <livewire:component.drug-single :drug="$drug" :key="time() . $drug->id" />
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

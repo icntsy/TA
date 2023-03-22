@@ -55,7 +55,7 @@ class Index extends Component
     {
         $rooms = Room::query();
         $rooms->where('name', 'like', '%' . $this->search . '%');
-        $rooms = $rooms->paginate(10);
+        $rooms = $rooms->paginate(5);
         return view('livewire.room.index', compact('rooms'));
     }
 }

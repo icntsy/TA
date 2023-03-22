@@ -9,11 +9,12 @@ use Livewire\Component;
 class Index extends Component
 {
     protected $listeners = [
-        'queueDeleted','queueUpdated'
+        'queueDeleted', 'queueUpdated'
     ];
 
-    public function queueDeleted(){
-        $this->dispatchBrowserEvent('show-message',[
+    public function queueDeleted()
+    {
+        $this->dispatchBrowserEvent('show-message', [
             'type' => 'success',
             'message' => 'Data Berhasil dihapus'
         ]);
@@ -22,7 +23,8 @@ class Index extends Component
     {
         $queues = Queue::query();
         $queues->whereDate('created_at', Carbon::today())->where(
-            'has_check', false,
+            'has_check',
+            false,
         );
         $queues = $queues->paginate(10);
         return view('livewire.queue.index', compact('queues'));
