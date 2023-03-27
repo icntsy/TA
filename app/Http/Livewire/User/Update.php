@@ -29,7 +29,8 @@ class Update extends Component
     {
         $this->validate();
 
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('Article')])]);
+        // $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('Article')])]);
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Data User Berhasil Diupdate', ['name' => __('Article')])]);
 
         $this->user->update([
             'name' => $this->name,
@@ -37,6 +38,7 @@ class Update extends Component
             'password' => \Hash::make($this->password),
             'role' => $this->role
         ]);
+        return redirect("/user");
     }
 
     public function mount(User $user)

@@ -30,7 +30,8 @@ class Update extends Component
     {
         $this->validate();
 
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => 'Berhasil menyimpan data.' ]);
+        // $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => 'Berhasil menyimpan data.' ]);
+         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => 'Data Obat Berhasil Diupdate' ]);
 
         $this->drug->update([
             'nama' => $this->nama,
@@ -39,6 +40,7 @@ class Update extends Component
             'min_stok' => $this->min_stok,
             'harga' => $this->harga,
         ]);
+        return redirect("/obat");
     }
 
     public function mount(Drug $drug){

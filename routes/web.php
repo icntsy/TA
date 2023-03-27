@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\kirimEmailController;
 use App\Http\Controllers\ImportDiagnosisController;
 use App\Http\Controllers\ImportLabController;
 use App\Http\Controllers\ImportObatController;
@@ -56,6 +57,7 @@ Route::middleware(['auth:web'])->group(function () use ($list_menu) {
         return view('welcome');
     })->name('home');
 
+    Route::get('/obat/kirim-email',[kirimEmailController::class,'index']);
     Route::post("/obat/import", [ImportObatController::class, "import"]);
     Route::post("/lab/import", [ImportLabController::class, "import"]);
     Route::post("/ruangan/import", [ImportRoomController::class, "import"]);

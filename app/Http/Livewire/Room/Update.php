@@ -32,12 +32,15 @@ class Update extends Component
     {
         $this->validate();
 
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil memperbarui data', ['name' => __('Article') ]) ]);
+        // $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil memperbarui data', ['name' => __('Article') ]) ]);
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Data Ruangan Berhasil Diupdate', ['name' => __('Article') ]) ]);
+
 
         $this->room->update([
             'name' => $this->name,
             'price' => $this->price,
         ]);
+        return redirect("/ruangan");
     }
     /**
      * Get the view / contents that represent the component.

@@ -44,7 +44,8 @@ class Index extends Component
 
     public function sort($column)
     {
-        $sort = $this->sortType == 'desc' ? 'asc' : 'desc';
+        // $sort = $this->sortType == 'desc' ? 'asc' : 'desc';
+        $sort = $this->sortType == 'asc' ? 'desc' : 'asc';
         $this->sortColumn = $column;
         $this->sortType = $sort;
     }
@@ -56,7 +57,8 @@ class Index extends Component
         if ($this->sortColumn) {
             $drugs->orderBy($this->sortColumn, $this->sortType);
         } else {
-            $drugs->latest('id');
+            // $drugs->latest('id');
+            $drugs->orderBy('stok', 'asc');
         }
         $drugs = $drugs->paginate(5);
 

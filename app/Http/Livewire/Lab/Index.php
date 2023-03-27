@@ -38,6 +38,8 @@ class Index extends Component
             'type' => 'success',
             'message' => 'Data Berhasil di Hapus'
         ]);
+
+
     }
     public function sort($column)
     {

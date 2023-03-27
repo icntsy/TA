@@ -51,7 +51,9 @@ class Index extends Component
         if ($this->sortColumn) {
             $diagnoses->orderBy($this->sortColumn, $this->sortType);
         } else {
-            $diagnoses->latest('id');
+            // $diagnoses->latest('id');
+            $diagnoses->orderBy('category', 'asc');
+
         }
         $diagnoses = $diagnoses->paginate(5);
         return view('livewire.diagnosis.index', compact('diagnoses'));

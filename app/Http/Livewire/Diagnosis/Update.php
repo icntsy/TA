@@ -42,7 +42,9 @@ class Update extends Component
             'english_name' => $this->english_name,
             'indonesian_name' => $this->indonesian_name
         ]);
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('Article')])]);
+        // $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('Article')])]);
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Data Diagnosis Berhasil Diupdate', ['name' => __('Article')])]);
+        return redirect("/diagnosis");
     }
 
     public function render()

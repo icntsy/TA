@@ -28,13 +28,15 @@ class Update extends Component
     {
         $this->validate();
 
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil memperbarui data', ['name' => __('Article') ]) ]);
+        // $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil memperbarui data', ['name' => __('Article') ]) ]);
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Data Lab Berhasil Diupdate', ['name' => __('Article') ]) ]);
 
         $this->lab->update([
             'nama' => $this->nama,
             'satuan' => $this->satuan,
             'harga' => $this->harga,
         ]);
+        return redirect("/lab");
     }
 
     public function mount(Lab $lab){

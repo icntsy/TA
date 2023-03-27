@@ -23,12 +23,14 @@ class Update extends Component
     {
         $this->validate();
 
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil Diperbarui', ['name' => __('Article')])]);
+        // $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil Diperbarui', ['name' => __('Article')])]);
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Data Layanan Berhasil Diupdate', ['name' => __('Article')])]);
 
         $this->service->update([
             'name' => $this->name,
 
         ]);
+        return redirect("/layanan");
     }
 
     public function mount(Service $service)

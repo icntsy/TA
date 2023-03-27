@@ -1,5 +1,5 @@
 @section('meta_title', 'Poliklinik')
-@section('page_title', 'EDIT DATA Poliklinik')
+@section('page_title', 'EDIT DATA POLIKLINIK')
 @section('page_title_icon')
     <i class="metismenu-icon fa fa-prescription-bottle-alt"></i>
 @endsection
