@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 
-// test
+// tests
 class CobaController extends Controller
 {
     public function index()
